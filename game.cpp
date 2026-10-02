@@ -6,6 +6,9 @@
 #include "GameManager.h"
 #include "LogManager.h"
 
+void loadReasources();
+void populateWorld();
+
 int main(int argc, char *argv[]) {
 
   // Start up game manager.
@@ -22,4 +25,14 @@ int main(int argc, char *argv[]) {
 
   // All is well.
   return 0;
+}
+
+void loadReasources()
+{
+  
+}
+
+void populateWorld()
+{
+
 }
