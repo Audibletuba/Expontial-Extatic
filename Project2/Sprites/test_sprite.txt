@@ -1,0 +1,11 @@
+2
+5
+3
+1
+yellow
+  A  
+ AAA 
+A   A
+  B  
+ BBB 
+B   B
