@@ -111,7 +111,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\amlar\OneDrive\Desktop\proj2b-LaRusso\Project2\Project2;C:\Users\amlar\OneDrive\Desktop\proj2a-Larusso\Project2\Project2;C:\Users\amlar\Downloads\IMGD3000\SFML-3.1.0-windows-vc17-64-bit\SFML-3.1.0;C:\Users\amlar\Downloads\IMGD3000\Hw2\Project2\include;C:\Users\amlar\Downloads\IMGD3000\Hw2\Project2\include\SFML;C:\Users\amlar\Downloads\IMGD3000\Hw2\Project2\Project2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\amlar\OneDrive\Desktop\Proj2c-LaRusso\Project2\Project2;C:\Users\amlar\OneDrive\Desktop\proj2b-LaRusso\Project2\Project2;C:\Users\amlar\OneDrive\Desktop\proj2a-Larusso\Project2\Project2;C:\Users\amlar\Downloads\IMGD3000\SFML-3.1.0-windows-vc17-64-bit\SFML-3.1.0;C:\Users\amlar\Downloads\IMGD3000\Hw2\Project2\include;C:\Users\amlar\Downloads\IMGD3000\Hw2\Project2\include\SFML;C:\Users\amlar\Downloads\IMGD3000\Hw2\Project2\Project2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -151,10 +151,12 @@
     </ClCompile>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DisplayManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventCollision.cpp" />
     <ClCompile Include="EventKeyboard.cpp" />
@@ -163,13 +165,17 @@
     <ClCompile Include="EventStep.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="MouseCursor.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectList.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Star.cpp" />
@@ -180,10 +186,12 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Box.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DisplayManager.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventCollision.h" />
     <ClInclude Include="EventKeyboard.h" />
@@ -192,13 +200,17 @@
     <ClInclude Include="EventStep.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameScreen.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="Manager.h" />
+    <ClInclude Include="MouseCursor.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectList.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Shop.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Star.h" />

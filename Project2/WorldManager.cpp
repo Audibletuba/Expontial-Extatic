@@ -3,6 +3,11 @@
 #include "EventCollision.h"
 #include "EventOut.h"
 #include "DisplayManager.h"
+#include "Object.h"
+#include "EventMouse.h"
+
+
+#include <iostream>
 WorldManager::WorldManager()
 {
 }
@@ -72,15 +77,12 @@ void WorldManager::draw()
 
             if (p_o->getAltitude() == alt)
             {
-                // Bounding box coordinates are relative to Object,
-                // so convert to world coordinates.
-                Box temp_box = getWorldBox(p_o);
+                Box obj_box = getWorldBox(p_o);
 
-                // Only draw if Object would be visible on window.
-                if (boxIntersectsBox(temp_box, view))
-                {
-                    p_o->draw();
-                }
+                if (!boxIntersectsBox(view, obj_box))
+                    continue;
+
+                p_o->draw();
             }
         }
     }
