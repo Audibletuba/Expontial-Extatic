@@ -13,15 +13,16 @@ private:
     int m_difficulty_upgrades;
     int m_money_upgrades;
 
+    int m_eggs_beat;
+
 public:
     Player(Vector position);
 
-    // Money
     int getMoney() const;
+
     void addMoney(int amount);
     bool spendMoney(int amount);
 
-    // Upgrades
     void addAttackUpgrade();
     void addTimerUpgrade();
     void addDifficultyUpgrade();
@@ -34,20 +35,20 @@ public:
 
     int getTotalUpgrades() const;
 
-    // Player stats
+    int getEggsBeat() const;
+    void addEggsBeat();
+
+    int getDifficulty() const;
+
     int getDamage() const;
     long getBattleTime() const;
     int getEnemyHealth() const;
     double getMoneyMultiplier() const;
 
-	// Upgrade prices
     int getAttackPrice() const;
     int getTimerPrice() const;
     int getDifficultyPrice() const;
     int getMoneyPrice() const;
-
-
-    // HUD
 
     int draw() override;
 };

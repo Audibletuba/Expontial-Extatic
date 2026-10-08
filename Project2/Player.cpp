@@ -15,6 +15,8 @@ Player::Player(Vector position)
     m_difficulty_upgrades = 0;
     m_money_upgrades = 0;
 
+    m_eggs_beat = 0;
+
     setSolidness(SPECTRAL);
     setAltitude(4);
 }
@@ -94,6 +96,31 @@ int Player::getTotalUpgrades() const
         m_money_upgrades;
 }
 
+int Player::getEggsBeat() const
+{
+    return m_eggs_beat;
+}
+
+void Player::addEggsBeat()
+{
+    m_eggs_beat++;
+}
+
+int Player::getDifficulty() const
+{
+    int difficulty =
+        1 +
+        m_eggs_beat -
+        m_difficulty_upgrades;
+
+    if (difficulty < 1)
+    {
+        difficulty = 1;
+    }
+
+    return difficulty;
+}
+
 int Player::getDamage() const
 {
     return static_cast<int>(
@@ -119,7 +146,7 @@ int Player::getEnemyHealth() const
     return static_cast<int>(
         100 * std::pow(
             1.50,
-            m_difficulty_upgrades
+            getDifficulty() - 1
         )
         );
 }
@@ -163,10 +190,10 @@ int Player::draw()
         22
     );
 
-    sf::Text upgrades_text(
+    sf::Text eggs_text(
         font,
-        "UPGRADES: " +
-        std::to_string(getTotalUpgrades()),
+        "EGGS BEAT: " +
+        std::to_string(getEggsBeat()),
         22
     );
 
@@ -180,7 +207,7 @@ int Player::draw()
     sf::Text difficulty_text(
         font,
         "DIFFICULTY: " +
-        std::to_string(m_difficulty_upgrades),
+        std::to_string(getDifficulty()),
         22
     );
 
@@ -198,7 +225,7 @@ int Player::draw()
         sf::Vector2f(25.0f, 10.0f)
     );
 
-    upgrades_text.setPosition(
+    eggs_text.setPosition(
         sf::Vector2f(220.0f, 10.0f)
     );
 
@@ -215,13 +242,14 @@ int Player::draw()
     );
 
     window->draw(money_text);
-    window->draw(upgrades_text);
+    window->draw(eggs_text);
     window->draw(damage_text);
     window->draw(difficulty_text);
     window->draw(time_text);
 
     return 0;
 }
+
 int Player::getAttackPrice() const
 {
     return static_cast<int>(
@@ -231,6 +259,7 @@ int Player::getAttackPrice() const
         )
         );
 }
+
 int Player::getTimerPrice() const
 {
     return static_cast<int>(
@@ -240,6 +269,7 @@ int Player::getTimerPrice() const
         )
         );
 }
+
 int Player::getDifficultyPrice() const
 {
     return static_cast<int>(
@@ -249,6 +279,7 @@ int Player::getDifficultyPrice() const
         )
         );
 }
+
 int Player::getMoneyPrice() const
 {
     return static_cast<int>(

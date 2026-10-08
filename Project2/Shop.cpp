@@ -1,13 +1,17 @@
 #include "Shop.h"
+#include "Player.h"
 #include "ResourceManager.h"
+#include "DisplayManager.h"
 
 #include <iostream>
+#include <string>
 
 Shop::Shop(Vector position)
     : Object(position)
 {
     m_open = false;
     m_selected_upgrade = NO_UPGRADE;
+    m_player = nullptr;
 
     setSolidness(SPECTRAL);
     setSprite("shop");
@@ -64,6 +68,11 @@ Shop::Shop(Vector position)
         "money",
         m_money_position
     );
+}
+
+void Shop::setPlayer(Player* player)
+{
+    m_player = player;
 }
 
 void Shop::setupUpgrade(
@@ -303,10 +312,11 @@ int Shop::eventHandler(const Event* event)
 
 int Shop::draw()
 {
-    Object::draw();
-
     if (!m_open)
+    {
+        Object::draw();
         return 0;
+    }
 
     m_attack_animation.draw(
         m_attack_position
@@ -323,6 +333,120 @@ int Shop::draw()
     m_money_animation.draw(
         m_money_position
     );
+
+    if (m_player != nullptr)
+    {
+        DisplayManager& display_manager =
+            DisplayManager::getInstance();
+
+        // ATTACK COUNT
+        display_manager.drawString(
+            Vector(
+                m_attack_position.getX(),
+                m_attack_position.getY() - 5
+            ),
+            std::to_string(
+                m_player->getAttackUpgrades()
+            ),
+            CENTER_JUSTIFIED,
+            WHITE
+        );
+
+        // ATTACK PRICE
+        display_manager.drawString(
+            Vector(
+                m_attack_position.getX(),
+                m_attack_position.getY() + 5
+            ),
+            "$" +
+            std::to_string(
+                m_player->getAttackPrice()
+            ),
+            CENTER_JUSTIFIED,
+            YELLOW
+        );
+
+        // TIMER COUNT
+        display_manager.drawString(
+            Vector(
+                m_timer_position.getX(),
+                m_timer_position.getY() - 5
+            ),
+            std::to_string(
+                m_player->getTimerUpgrades()
+            ),
+            CENTER_JUSTIFIED,
+            WHITE
+        );
+
+        // TIMER PRICE
+        display_manager.drawString(
+            Vector(
+                m_timer_position.getX(),
+                m_timer_position.getY() + 5
+            ),
+            "$" +
+            std::to_string(
+                m_player->getTimerPrice()
+            ),
+            CENTER_JUSTIFIED,
+            YELLOW
+        );
+
+        // DIFFICULTY COUNT
+        display_manager.drawString(
+            Vector(
+                m_difficulty_position.getX(),
+                m_difficulty_position.getY() - 5
+            ),
+            std::to_string(
+                m_player->getDifficultyUpgrades()
+            ),
+            CENTER_JUSTIFIED,
+            WHITE
+        );
+
+        // DIFFICULTY PRICE
+        display_manager.drawString(
+            Vector(
+                m_difficulty_position.getX(),
+                m_difficulty_position.getY() + 5
+            ),
+            "$" +
+            std::to_string(
+                m_player->getDifficultyPrice()
+            ),
+            CENTER_JUSTIFIED,
+            YELLOW
+        );
+
+        // MONEY COUNT
+        display_manager.drawString(
+            Vector(
+                m_money_position.getX(),
+                m_money_position.getY() - 5
+            ),
+            std::to_string(
+                m_player->getMoneyUpgrades()
+            ),
+            CENTER_JUSTIFIED,
+            WHITE
+        );
+
+        // MONEY PRICE
+        display_manager.drawString(
+            Vector(
+                m_money_position.getX(),
+                m_money_position.getY() + 5
+            ),
+            "$" +
+            std::to_string(
+                m_player->getMoneyPrice()
+            ),
+            CENTER_JUSTIFIED,
+            YELLOW
+        );
+    }
 
     return 0;
 }

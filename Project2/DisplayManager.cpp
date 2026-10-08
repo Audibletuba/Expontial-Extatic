@@ -124,7 +124,6 @@ int DisplayManager::swapBuffers()
     }
 
     m_p_window->display();
-    m_p_window->clear();
 
     return 0;
 }

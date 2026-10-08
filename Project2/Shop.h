@@ -6,6 +6,8 @@
 #include "Box.h"
 #include "EventMouse.h"
 
+class Player;
+
 enum ShopUpgrade
 {
     NO_UPGRADE,
@@ -20,6 +22,8 @@ class Shop : public Object
 private:
     bool m_open;
     ShopUpgrade m_selected_upgrade;
+
+    Player* m_player;
 
     Animation m_attack_animation;
     Animation m_timer_animation;
@@ -43,12 +47,18 @@ private:
         Vector position
     );
 
-    bool mouseInBox(Vector mouse_world, Box box);
+    bool mouseInBox(
+        Vector mouse_world,
+        Box box
+    );
 
 public:
     Shop(Vector position);
 
-    int eventHandler(const Event* event) override;
+    int eventHandler(
+        const Event* event
+    ) override;
+
     int draw() override;
 
     bool isOpen() const;
@@ -56,11 +66,11 @@ public:
     void openShop();
     void closeShop();
 
-    bool mouseInBox(Vector mouse_world, Box box, Vector position);
-
     ShopUpgrade getSelectedUpgrade() const;
 
     void clearSelectedUpgrade();
+
+    void setPlayer(Player* player);
 };
 
 #endif

@@ -35,19 +35,11 @@ int main()
     resource_manager.startUp();
 
     world_manager.setBoundary(
-        Box(
-            Vector(0, 0),
-            80,
-            24
-        )
+        Box(Vector(0, 0),80,24)
     );
 
     world_manager.setView(
-        Box(
-            Vector(0, 0),
-            80,
-            24
-        )
+        Box(Vector(0, 0),80, 24)
     );
 
     resource_manager.loadSprite(
@@ -116,6 +108,7 @@ int main()
         new Shop(
             Vector(40, 12)
         );
+    shop->setPlayer(player);
 
     Button* fight_button =
         new Button(
@@ -293,6 +286,7 @@ int main()
                             player->addMoney(
                                 points
                             );
+                            player->addEggsBeat();
 
                             std::cout
                                 << "Boss defeated\n";
@@ -391,15 +385,28 @@ int main()
                             ATTACK_UPGRADE
                             )
                         {
-                            player->addAttackUpgrade();
+                            int price =
+                                player->getAttackPrice();
 
-                            std::cout
-                                << "ATTACK UPGRADE PURCHASED\n";
+                            if (
+                                player->spendMoney(price)
+                                )
+                            {
+                                player->addAttackUpgrade();
 
-                            std::cout
-                                << "Damage: "
-                                << player->getDamage()
-                                << "\n";
+                                std::cout
+                                    << "ATTACK UPGRADE PURCHASED\n";
+
+                                std::cout
+                                    << "Money remaining: $"
+                                    << player->getMoney()
+                                    << "\n";
+                            }
+                            else
+                            {
+                                std::cout
+                                    << "NOT ENOUGH MONEY\n";
+                            }
 
                             shop->clearSelectedUpgrade();
                         }
@@ -409,15 +416,28 @@ int main()
                             TIMER_UPGRADE
                             )
                         {
-                            player->addTimerUpgrade();
+                            int price =
+                                player->getTimerPrice();
 
-                            std::cout
-                                << "TIMER UPGRADE PURCHASED\n";
+                            if (
+                                player->spendMoney(price)
+                                )
+                            {
+                                player->addTimerUpgrade();
 
-                            std::cout
-                                << "Battle time: "
-                                << player->getBattleTime() / 1000
-                                << " seconds\n";
+                                std::cout
+                                    << "TIMER UPGRADE PURCHASED\n";
+
+                                std::cout
+                                    << "Money remaining: $"
+                                    << player->getMoney()
+                                    << "\n";
+                            }
+                            else
+                            {
+                                std::cout
+                                    << "NOT ENOUGH MONEY\n";
+                            }
 
                             shop->clearSelectedUpgrade();
                         }
@@ -427,15 +447,33 @@ int main()
                             DIFFICULTY_UPGRADE
                             )
                         {
-                            player->addDifficultyUpgrade();
+                            int price =
+                                player->getDifficultyPrice();
 
-                            std::cout
-                                << "DIFFICULTY UPGRADE PURCHASED\n";
+                            if (
+                                player->spendMoney(price)
+                                )
+                            {
+                                player->addDifficultyUpgrade();
 
-                            std::cout
-                                << "Boss health: "
-                                << player->getEnemyHealth()
-                                << "\n";
+                                std::cout
+                                    << "DIFFICULTY UPGRADE PURCHASED\n";
+
+                                std::cout
+                                    << "Difficulty: "
+                                    << player->getDifficulty()
+                                    << "\n";
+
+                                std::cout
+                                    << "Money remaining: $"
+                                    << player->getMoney()
+                                    << "\n";
+                            }
+                            else
+                            {
+                                std::cout
+                                    << "NOT ENOUGH MONEY\n";
+                            }
 
                             shop->clearSelectedUpgrade();
                         }
@@ -445,15 +483,33 @@ int main()
                             MONEY_UPGRADE
                             )
                         {
-                            player->addMoneyUpgrade();
+                            int price =
+                                player->getMoneyPrice();
 
-                            std::cout
-                                << "MONEY UPGRADE PURCHASED\n";
+                            if (
+                                player->spendMoney(price)
+                                )
+                            {
+                                player->addMoneyUpgrade();
 
-                            std::cout
-                                << "Money multiplier: "
-                                << player->getMoneyMultiplier()
-                                << "\n";
+                                std::cout
+                                    << "MONEY UPGRADE PURCHASED\n";
+
+                                std::cout
+                                    << "Money multiplier: "
+                                    << player->getMoneyMultiplier()
+                                    << "\n";
+
+                                std::cout
+                                    << "Money remaining: $"
+                                    << player->getMoney()
+                                    << "\n";
+                            }
+                            else
+                            {
+                                std::cout
+                                    << "NOT ENOUGH MONEY\n";
+                            }
 
                             shop->clearSelectedUpgrade();
                         }
@@ -519,13 +575,7 @@ int main()
             }
         }
 
-        // DRAW
-        display_manager.drawString(
-            Vector(40, 12),
-            "TEST",
-            CENTER_JUSTIFIED,
-            WHITE
-        );
+        display_manager.getWindow()->clear();
 
         world_manager.draw();
 
