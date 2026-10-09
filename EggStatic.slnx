@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="EggStatic/EggStatic.vcxproj" Id="14bfd584-f2b0-43aa-9dbe-d5a511b0e438" />
+</Solution>
