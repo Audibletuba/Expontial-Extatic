@@ -422,15 +422,12 @@ int Shop::draw()
 
         // MONEY COUNT
         display_manager.drawString(
-            Vector(
-                m_money_position.getX(),
-                m_money_position.getY() - 5
-            ),
-            std::to_string(
-                m_player->getMoneyUpgrades()
-            ),
+            Vector(m_money_position.getX(), m_money_position.getY() - 4),
+            "+" + std::to_string(
+                static_cast<int>((m_player->getMoneyMultiplier() - 1.0) * 100)
+            ) + "%",
             CENTER_JUSTIFIED,
-            WHITE
+            GREEN
         );
 
         // MONEY PRICE

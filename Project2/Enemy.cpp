@@ -112,15 +112,10 @@ int Enemy::calculatePoints(
 
     int base_points =
         static_cast<int>(
-            (100.0 * remaining) /
-            m_round_time
-            );
+            (100.0 * remaining) /m_round_time);
 
     m_points =
-        static_cast<int>(
-            base_points *
-            money_multiplier
-            );
+        static_cast<int>(base_points * money_multiplier) + 50*static_cast<int>(money_multiplier);
 
     return m_points;
 }
@@ -191,14 +186,6 @@ int Enemy::draw()
         24
     );
 
-    // Points.
-    sf::Text points_text(
-        font,
-        "POINTS: " +
-        std::to_string(m_points),
-        24
-    );
-
     // Move battle HUD below the Player HUD.
     health_text.setPosition(
         sf::Vector2f(
@@ -209,21 +196,13 @@ int Enemy::draw()
 
     timer_text.setPosition(
         sf::Vector2f(
-            400.0f,
-            700.0f
-        )
-    );
-
-    points_text.setPosition(
-        sf::Vector2f(
-            780.0f,
+            700.0f,
             700.0f
         )
     );
 
     window->draw(health_text);
     window->draw(timer_text);
-    window->draw(points_text);
 
     return 0;
 }

@@ -34,7 +34,7 @@ public:
     int getMoneyUpgrades() const;
 
     int getTotalUpgrades() const;
-
+    void reset();
     int getEggsBeat() const;
     void addEggsBeat();
 

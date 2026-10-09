@@ -5,7 +5,9 @@ enum GameScreen
 {
     TITLE_SCREEN,
     BATTLE_SCREEN,
-    SHOP_SCREEN
+    SHOP_SCREEN,
+    END_SCREEN
+
 };
 
 #endif

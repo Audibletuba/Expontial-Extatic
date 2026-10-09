@@ -190,13 +190,6 @@ int Player::draw()
         22
     );
 
-    sf::Text eggs_text(
-        font,
-        "EGGS BEAT: " +
-        std::to_string(getEggsBeat()),
-        22
-    );
-
     sf::Text damage_text(
         font,
         "DAMAGE: " +
@@ -225,24 +218,21 @@ int Player::draw()
         sf::Vector2f(25.0f, 10.0f)
     );
 
-    eggs_text.setPosition(
-        sf::Vector2f(220.0f, 10.0f)
-    );
+    
 
     damage_text.setPosition(
-        sf::Vector2f(410.0f, 10.0f)
+        sf::Vector2f(300.0f, 10.0f)
     );
 
     difficulty_text.setPosition(
-        sf::Vector2f(600.0f, 10.0f)
+        sf::Vector2f(550.0f, 10.0f)
     );
 
     time_text.setPosition(
-        sf::Vector2f(820.0f, 10.0f)
+        sf::Vector2f(800.0f, 10.0f)
     );
 
     window->draw(money_text);
-    window->draw(eggs_text);
     window->draw(damage_text);
     window->draw(difficulty_text);
     window->draw(time_text);
@@ -288,4 +278,15 @@ int Player::getMoneyPrice() const
             m_money_upgrades
         )
         );
+}
+void Player::reset()
+{
+    m_money = 0;
+
+    m_attack_upgrades = 0;
+    m_timer_upgrades = 0;
+    m_difficulty_upgrades = 0;
+    m_money_upgrades = 0;
+
+    m_eggs_beat = 0;
 }
